@@ -1,0 +1,21 @@
+<h1>Fatura</h1>
+<hr/>
+<div id="<%= dom_id invoice %>">
+  <p>
+    <strong><%= t("activerecord.attributes.invoice.due_at") %>:</strong>
+    <%= I18n.l invoice.due_at, format: :small %>
+  </p>
+  <p>
+    <strong>
+      <%= t("activerecord.models.customer") %>:</strong>
+    <%= link_to invoice.customer.name, invoice.customer %>
+  </p>
+  <p>
+    <strong><%= t("activerecord.attributes.invoice.amount") %>:</strong>
+    <%= invoice.amount.format %>
+  </p>
+  <p>
+    <strong><%= t("activerecord.attributes.invoice.status") %>:</strong>
+    <%= invoice.status %>
+  </p>
+</div>

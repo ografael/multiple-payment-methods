@@ -1,0 +1,39 @@
+<%= form_with(model: invoice) do |form| %>
+  <% if invoice.errors.any? %>
+    <div style="color: red">
+      <ul>
+        <% invoice.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :customer, style: "display: block" %>
+    <%= form.select :customer_id,
+                options_for_select(
+                  Customer.all.map { |c| [c.name, c.id] },
+                  @invoice.customer&.id
+                ),
+                include_blank: true %>
+  </div>
+
+  <div>
+    <%= form.label :amount_cents, style: "display: block" %>
+    <%= form.text_field :amount %>
+  </div>
+
+  <div>
+    <%= form.label :due_at, style: "display: block" %>
+    <%= form.text_field :due_at,
+                    class: "datepicker",
+                    value: @invoice.due_at&.strftime("%d/%m/%Y") %>
+  </div>
+
+  <hr />
+
+  <div>
+    <%= form.submit(class: 'btn btn-lg btn-primary')  %>
+  </div>
+<% end %>
