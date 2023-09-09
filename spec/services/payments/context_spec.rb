@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Payments::Context do
   let(:payment_types) do
-    ['bank_slip', 'credit_card']
+    %w[bank_slip credit_card]
   end
 
   describe '#pay' do

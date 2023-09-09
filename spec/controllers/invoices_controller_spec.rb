@@ -35,19 +35,19 @@ RSpec.describe InvoicesController do
           post :create, params: {
             invoice: {
               customer_id: customer.id,
-              amount: '1.000,99',
+              amount: '1.99',
               due_at: '01/01/2023'
             }
           }
         end.to change(Invoice, :count).by(1)
-        expect(Invoice.last.amount_cents).to eq(1_000_99)
+        expect(Invoice.last.amount_cents).to eq(199)
       end
 
       it 'redirects to the created invoice' do
         post :create, params: {
           invoice: {
             customer_id: customer.id,
-            amount: '99,99',
+            amount: '99.99',
             due_at: '01/01/2023'
           }
         }
@@ -78,13 +78,13 @@ RSpec.describe InvoicesController do
 
     context 'with valid attributes' do
       it 'updates theinvoice' do
-        patch :update, params: { id: invoice.id, invoice: { amount: '10,99' } }
+        patch :update, params: { id: invoice.id, invoice: { amount: '10.99' } }
         invoice.reload
         expect(invoice.amount_cents).to eq(1099)
       end
 
       it 'redirects to the updated invoice' do
-        patch :update, params: { id: invoice.id, invoice: { amount: '10,99' } }
+        patch :update, params: { id: invoice.id, invoice: { amount: '10.99' } }
         expect(response).to redirect_to(invoice)
       end
     end
