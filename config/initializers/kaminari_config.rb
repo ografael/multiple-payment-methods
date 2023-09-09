@@ -1,20 +1,5 @@
 # frozen_string_literal: true
 
-payment_types = Payments::Type.all
-
-60.times do
-  customer = Customer.create!(
-    name: Faker::Name.unique.name,
-    payment_type: payment_types.sample,
-    recurring_payment_day: rand(1..31).to_i
-  )
-  rand(1..10).times do
-    customer.invoices.create!(
-      status: 'pending',
-      amount_cents: rand(1_99..99_99),
-      due_at: Time.zone.at(rand(1.week.ago..1.week.from_now))
-    )
-  end
+Kaminari.configure do |config|
+  config.default_per_page = 50
 end
-
-Customer.limit(10).update(recurring_payment_day: Time.zone.now.day)

@@ -1,0 +1,36 @@
+<%= form_with(model: customer) do |form| %>
+  <% if customer.errors.any? %>
+    <div style="color: red">
+      <ul>
+        <% customer.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :payment_type, style: "display: block" %>
+    <%= form.select :payment_type,
+                options_for_select(@customer.payment_types, @customer.payment_type),
+                include_blank: true %>
+  </div>
+
+  <div>
+    <%= form.label :recurring_payment_day, style: "display: block" %>
+    <%= form.select :recurring_payment_day,
+                options_for_select((1..31).to_a, @customer.recurring_payment_day),
+                include_blank: true %>
+  </div>
+
+  <hr />
+
+  <div>
+    <%= form.submit(class: 'btn btn-lg btn-primary')  %>
+  </div>
+<% end %>

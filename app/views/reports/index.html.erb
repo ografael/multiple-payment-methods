@@ -1,0 +1,96 @@
+<div class="alert alert-info" role="alert">
+  <p>
+    Nessa demonstração, o processamento das Faturas é realizado de forma
+    síncrona.
+  </p>
+  <p>
+    Em uma aplicação real, caso seja necessário implementar o processamento das
+    Faturas de forma assíncrona a melhor escolha é o Sidekiq.
+  </p>
+  <p>
+    O Sidekiq é uma biblioteca de processamento de trabalhos em segundo plano.
+    <br/>
+    Essa biblioteca permite que tarefas demoradas ou que não precisam ser
+    executadas imediatamente sejam enfileiradas e processadas em segundo plano,
+    liberando a thread principal da aplicação para continuar respondendo a
+    solicitações dos usuários de forma mais rápida e eficiente.
+  </p>
+</div>
+
+<% if @invoices_not_pending.any? %>
+  <%= link_to "Resetar", reset_reports_path, class: "btn btn-warning btn-lg" %>
+<% else %>
+  <%= link_to "Executar Faturamento", pay_reports_path, class: "btn btn-success btn-lg" %>
+<% end %>
+
+<hr/>
+
+<h1>Clientes com vencimento no dia</h1>
+
+<hr/>
+
+<div class="table-responsive small">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Forma de pagamento</th>
+        <th scope="col">Dia do pagamento recorrente</th>
+        <th scope="col">Faturas</th>
+        <th scope="col">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @customers_recurring_payment_today.each do |customer| %>
+        <tr>
+          <td><%= link_to customer.name, customer %></td>
+          <td><%= customer.payment_type %></td>
+          <td><%= customer.recurring_payment_day %></td>
+          <td><%= customer.invoices.count %></td>
+          <td>
+            <%= Money.from_cents(customer.invoices.sum(:amount_cents)).format %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<% if @invoices_not_pending.any? %>
+  <hr/>
+
+  <div class="alert alert-success display-4">
+    <%= @invoices_not_pending.count %>
+    Faturas processadas, no total de
+    <%= Money.from_cents(@invoices_not_pending.sum(:amount_cents)).format %>
+  </div>
+
+  <hr/>
+
+  <div class="table-responsive small">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Vencimento</th>
+          <th scope="col">Valor</th>
+          <th scope="col">Cliente</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @invoices_not_pending.each do |invoice| %>
+          <tr>
+            <td><%= link_to "detalhar", invoice, class: "btn btn-secondary btn-sm" %></td>
+            <td>
+              <%= I18n.l invoice.due_at, format: :small %>
+            </td>
+            <td><%= invoice.amount.format %></td>
+            <td><%= link_to invoice.customer.name, invoice.customer %></td>
+            <td><%= invoice.status %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
