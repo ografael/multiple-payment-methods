@@ -15,25 +15,27 @@ Strategy is a behavioral design pattern that allows you to define a family of al
 put them in separate classes, and make their objects interchangeable.
 
 
-Arquitetura organizada na pasta:
+Architecture organized in the folder:
 ```
 /app/services/payments
 ```
 
-Exemplo de uso:
+Example of use:
 ```ruby
    Payments::Context.new('bank_slip').pay(invoice)
    Payments::Context.new('credit_card').pay(invoice)
 ```
 
-# Como adicionar um novo tipo de pagamento?
-Atualmente o sistema suporta 2 meios de pagamentos bank_slip e credit_card.
+# How to add a new payment type?
+
+Currently the system supports 2 payment methods bank_slip and credit_card.
+
 ```
 /app/services/payments/types/bank_slip.rb
 /app/services/payments/types/credit_card.rb
 ```
 
-Para adicionar o pix como um novo meio de pagamento, crie um novo arquivo no destino:
+To add pix as a new payment method, create a new file at the destination:
 ```
 /app/services/payments/types/pix.rb
 ```
@@ -50,11 +52,11 @@ module Payments
 end
 ```
 
-Pronto. Todo o restante do sistema deve identificar esse novo meio de pagamento.
+This is it. The rest of the system must identify this new payment method.
 
-O arquivo de teste type_spec.rb verifica quais os meios de pagamentos do sistema.
+The type_spec.rb test file checks the system's payment methods.
 
-Atualize o teste type_spec.rb com o novo meio de pagamento pix:
+Update the type_spec.rb test with the new pix payment method:
 
 ```
 spec/services/payments/type_spec.rb
@@ -66,7 +68,7 @@ spec/services/payments/type_spec.rb
   end
 ```
 
-# Configuração
+# Configuration
 
 ```
 ruby --version
@@ -76,7 +78,7 @@ rails --version
 Rails 7.0.7
 ```
 
-# Como executar o projeto?
+# How to execute the project?
 ```
 rails db:create db:migrate db:seed
 ```
@@ -85,16 +87,16 @@ rails db:create db:migrate db:seed
 rails s
 ```
 
-Acesse o localhost:3000.
+Access localhost:3000.
 
 
-# Como executar os testes?
+# How to run the tests?
 
 ```
-rspec
+bundle exec rspec
 ```
 
-# Algumas gems adicionadas durante o desenvolvimento
+# Some gems added during development
 - faker - It's a library for generating fake data such as names, addresses, and phone numbers.
 - money-rails - This library provides integration of the money gem with Rails.
 - shoulda-matchers - Shoulda Matchers provides RSpec- and Minitest-compatible one-liners to test common Rails functionality that, if written by hand, would be much longer, more complex, and error-prone.
