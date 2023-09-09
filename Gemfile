@@ -40,4 +40,3 @@ gem 'kaminari'
 gem 'money-rails'
 gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
-
