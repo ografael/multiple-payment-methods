@@ -1,15 +1,14 @@
 # Problem
 We need to support multiple payment methods to receive from our customers.
 
-They can pay by bank slip, by credit card, by deposit and tomorrow new forms like Pix may emerge.
+They can pay by bank slip, by credit card and tomorrow new forms like deposit may emerge.
 
-Each customer can choose how they want to make payment. This choice must be recorded in the system and taken into account every time a bill is generated for the customer.
+Each customer can choose how they want to make the payment. 
 
-Billing must be carried out once a month on the due date chosen by the customer and using the payment method chosen by the customer.
-
+This choice must be recorded in the system and taken into account every time a bill is generated for the customer.
 
 # Solution used
-The solution used to implement the various payment methods was based on the Strategy standard.
+The solution used to implement the various payment methods was based on the Strategy pattern.
 
 Strategy is a behavioral design pattern that allows you to define a family of algorithms,
 put them in separate classes, and make their objects interchangeable.
@@ -35,17 +34,17 @@ Currently the system supports 2 payment methods bank_slip and credit_card.
 /app/services/payments/types/credit_card.rb
 ```
 
-To add pix as a new payment method, create a new file at the destination:
+To add deposit as a new payment method, create a new file at the destination:
 ```
-/app/services/payments/types/pix.rb
+/app/services/payments/types/deposit.rb
 ```
 
 ```ruby
 module Payments
   module Types
-    class Pix < Payments::Type
+    class Deposit < Payments::Type
       def pay(invoice)
-        invoice.update(status: 'Pix pago')
+        invoice.update(status: 'Deposit paid')
       end
     end
   end
@@ -56,7 +55,7 @@ This is it. The rest of the system must identify this new payment method.
 
 The type_spec.rb test file checks the system's payment methods.
 
-Update the type_spec.rb test with the new pix payment method:
+Update the type_spec.rb test with the new payment method:
 
 ```
 spec/services/payments/type_spec.rb
@@ -64,7 +63,7 @@ spec/services/payments/type_spec.rb
 
 ```ruby
   let(:payment_types) do
-      ['bank_slip', 'credit_card', 'pix']
+      ['bank_slip', 'credit_card', 'deposit']
   end
 ```
 
@@ -103,7 +102,7 @@ bundle exec rspec
 - kaminari - A Scope & Engine based, clean, powerful, customizable and sophisticated paginator for modern web app frameworks and ORMs.
 - rubocop - RuboCop is a Ruby static code analyzer (a.k.a. linter) and code formatter.
 - guard - Guard automates various tasks by running custom rules whenever file or directories are modified.
-
+- bullet - Help to kill N+1 queries and unused eager loading
 
 # This is just an example application
 
