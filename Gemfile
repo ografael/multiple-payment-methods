@@ -35,6 +35,7 @@ group :test do
   gem 'webdrivers'
 end
 
+gem 'bullet'
 gem 'faker'
 gem 'kaminari'
 gem 'money-rails'

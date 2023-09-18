@@ -20,7 +20,7 @@
         <tr>
           <td><%= link_to "detalhar", invoice, class: "btn btn-secondary btn-sm" %></td>
           <td>
-            <%= I18n.l invoice.due_at, format: :small %>
+            <%= invoice.due_at %>
           </td>
           <td><%= invoice.amount.format %></td>
           <td><%= link_to invoice.customer.name, invoice.customer %></td>

@@ -9,7 +9,7 @@ class Invoice < ApplicationRecord
 
   validates :amount, numericality: { greater_than: 0 }
 
-  default_scope { order(due_at: :asc) }
+  default_scope { includes([:customer]).order(due_at: :asc) }
 
   scope :not_pending, -> { where.not(status: 'pending') }
 

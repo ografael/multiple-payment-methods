@@ -1,22 +1,3 @@
-<div class="alert alert-info" role="alert">
-  <p>
-    Nessa demonstração, o processamento das Faturas é realizado de forma
-    síncrona.
-  </p>
-  <p>
-    Em uma aplicação real, caso seja necessário implementar o processamento das
-    Faturas de forma assíncrona a melhor escolha é o Sidekiq.
-  </p>
-  <p>
-    O Sidekiq é uma biblioteca de processamento de trabalhos em segundo plano.
-    <br/>
-    Essa biblioteca permite que tarefas demoradas ou que não precisam ser
-    executadas imediatamente sejam enfileiradas e processadas em segundo plano,
-    liberando a thread principal da aplicação para continuar respondendo a
-    solicitações dos usuários de forma mais rápida e eficiente.
-  </p>
-</div>
-
 <% if @invoices_not_pending.any? %>
   <%= link_to "Resetar", reset_reports_path, class: "btn btn-warning btn-lg" %>
 <% else %>
@@ -83,7 +64,7 @@
           <tr>
             <td><%= link_to "detalhar", invoice, class: "btn btn-secondary btn-sm" %></td>
             <td>
-              <%= I18n.l invoice.due_at, format: :small %>
+              <%= invoice.due_at %>
             </td>
             <td><%= invoice.amount.format %></td>
             <td><%= link_to invoice.customer.name, invoice.customer %></td>
