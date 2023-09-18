@@ -43,6 +43,7 @@ class CustomersController < ApplicationController
 
   def set_customer
     @customer = Customer.find(params[:id])
+    @invoices = Invoice.default_scoped.where(customer: @customer)
   end
 
   def customer_params
