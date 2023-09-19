@@ -1,7 +1,7 @@
-<h1>Pending</h1>
+<h1>Pending (<%= @invoices_pending.count %>)</h1>
 <%= render "invoices/invoices", invoices: @invoices_pending %>
 
 <hr>
 
-<h1>Paid</h1>
+<h1>Paid (<%= @invoices_not_pending.count %>)</h1>
 <%= render "invoices/invoices", invoices: @invoices_not_pending %>

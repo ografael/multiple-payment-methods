@@ -31,6 +31,6 @@
 
 <% end %>
 
-<% if invoices.nil? %>
-  <h3>Empty</h3>
+<% if invoices.nil? || invoices.empty? %>
+  <h3 class="alert alert-info">Empty</h3>
 <% end %>
