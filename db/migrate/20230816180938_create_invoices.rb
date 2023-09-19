@@ -6,7 +6,6 @@ class CreateInvoices < ActiveRecord::Migration[7.0]
       t.references :customer, foreign_key: true
       t.monetize :amount
       t.string :status
-      t.datetime :due_at
 
       t.timestamps
     end

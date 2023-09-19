@@ -24,13 +24,6 @@
     <%= form.text_field :amount %>
   </div>
 
-  <div>
-    <%= form.label :due_at, style: "display: block" %>
-    <%= form.text_field :due_at,
-                    class: "datepicker",
-                    value: @invoice.due_at&.strftime("%d/%m/%Y") %>
-  </div>
-
   <hr/>
 
   <div>

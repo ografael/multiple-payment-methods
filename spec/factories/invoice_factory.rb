@@ -5,6 +5,5 @@ FactoryBot.define do
     customer
     amount_cents { 10_99 }
     status { 'pending' }
-    due_at { Time.zone.today }
   end
 end

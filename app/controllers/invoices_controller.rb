@@ -17,13 +17,6 @@ class InvoicesController < ApplicationController
 
   def create
     @invoice = Invoice.new(invoice_params)
-
-    begin
-      @invoice.due_at = Date.parse(invoice_params[:due_at]).strftime('%d/%m/%Y') if invoice_params[:due_at].present?
-    rescue ArgumentError
-      @invoice.due_at = nil
-    end
-
     @invoice.status = 'pending'
 
     if @invoice.save
@@ -54,6 +47,6 @@ class InvoicesController < ApplicationController
   end
 
   def invoice_params
-    params.require(:invoice).permit(:customer_id, :amount, :due_at)
+    params.require(:invoice).permit(:customer_id, :amount)
   end
 end

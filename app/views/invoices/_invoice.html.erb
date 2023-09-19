@@ -2,10 +2,6 @@
 <hr/>
 <div id="<%= dom_id invoice %>">
   <p>
-    <strong><%= t("activerecord.attributes.invoice.due_at") %>:</strong>
-    <%= invoice.due_at %>
-  </p>
-  <p>
     <strong>
       <%= t("activerecord.models.customer") %>:</strong>
     <%= link_to invoice.customer.name, invoice.customer %>
