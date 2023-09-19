@@ -2,8 +2,8 @@
 
 class ReportsController < ApplicationController
   def index
+    @invoices_pending = Invoice.pending
     @invoices_not_pending = Invoice.not_pending
-    @customers_recurring_payment_today = Customer.recurring_payment_today
   end
 
   def pay

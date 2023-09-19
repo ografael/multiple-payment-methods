@@ -10,7 +10,6 @@ RSpec.describe Customer do
   describe 'validations' do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:payment_type) }
-    it { is_expected.to validate_presence_of(:recurring_payment_day) }
   end
 
   describe '#payment_types' do

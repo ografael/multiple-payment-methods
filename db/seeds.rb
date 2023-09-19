@@ -6,7 +6,6 @@ payment_types = Payments::Type.all
   customer = Customer.create!(
     name: Faker::Name.unique.name,
     payment_type: payment_types.sample,
-    recurring_payment_day: rand(1..31).to_i
   )
   rand(1..5).times do
     customer.invoices.create!(
@@ -16,5 +15,3 @@ payment_types = Payments::Type.all
     )
   end
 end
-
-Customer.limit(10).update(recurring_payment_day: Time.zone.now.day)
