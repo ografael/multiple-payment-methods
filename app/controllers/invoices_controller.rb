@@ -2,6 +2,7 @@
 
 class InvoicesController < ApplicationController
   before_action :set_invoice, only: %i[show edit update destroy]
+  before_action :set_customers
 
   def index
     @invoices = Kaminari.paginate_array(Invoice.default_scoped).page(params[:page])
@@ -44,6 +45,10 @@ class InvoicesController < ApplicationController
 
   def set_invoice
     @invoice = Invoice.find(params[:id])
+  end
+
+  def set_customers
+    @set_customers ||= Customer.all
   end
 
   def invoice_params
