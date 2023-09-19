@@ -1,7 +1,7 @@
 # Problem
 We need to support multiple payment methods to receive from our customers.
 
-They can pay using bank slip, credit card and tomorrow new forms like deposit may emerge.
+At the moment, the system supports payments using bank slip and credit card. In the future, new forms like deposit may emerge.
 
 Each customer can choose how they want to make the payment. 
 
