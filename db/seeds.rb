@@ -5,7 +5,7 @@ payment_types = Payments::Type.all
 10.times do
   customer = Customer.create!(
     name: Faker::Name.unique.name,
-    payment_type: payment_types.sample,
+    payment_type: payment_types.sample
   )
   rand(1..5).times do
     customer.invoices.create!(
