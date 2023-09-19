@@ -9,9 +9,9 @@ RSpec.describe Invoices::Payments do
     end
 
     context 'with a pending invoice' do
-      let!(:invoice) { create(:invoice, customer:) }
+      let!(:invoice) { create(:invoice, status: 'pending', customer:) }
 
-      it 'update the invoice status' do
+      it 'update the invoice status to paid' do
         described_class.pay
         expect(invoice.reload.status).to eq("#{customer.payment_type} paid")
       end
