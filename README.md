@@ -7,7 +7,7 @@ Each customer can choose how they want to make the payment.
 
 This choice must be recorded in the system and taken into account every time a bill is generated for the customer.
 
-# Solution used
+# Solution
 The solution used to implement the various payment methods was based on the Strategy pattern.
 
 Strategy is a behavioral design pattern that allows you to define a family of algorithms,
