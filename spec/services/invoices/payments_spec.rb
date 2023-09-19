@@ -13,7 +13,7 @@ RSpec.describe Invoices::Payments do
 
       it 'update the invoice status' do
         described_class.pay
-        expect(invoice.reload.status).not_to eq('pending')
+        expect(invoice.reload.status).to eq("#{customer.payment_type} paid")
       end
     end
   end

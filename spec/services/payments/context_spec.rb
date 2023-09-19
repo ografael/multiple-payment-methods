@@ -15,7 +15,7 @@ RSpec.describe Payments::Context do
     context 'with a valid payment_type' do
       it 'update the invoice status' do
         payment_context.pay(invoice)
-        expect(invoice.reload.status).to eq('Boleto pago')
+        expect(invoice.reload.status).to eq('bank_slip paid')
       end
     end
 
