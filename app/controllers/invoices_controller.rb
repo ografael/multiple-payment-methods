@@ -2,6 +2,7 @@
 
 class InvoicesController < ApplicationController
   before_action :set_invoice, only: %i[show edit update destroy]
+  before_action :set_customers
 
   def index
     @invoices = Kaminari.paginate_array(Invoice.default_scoped).page(params[:page])
@@ -17,13 +18,6 @@ class InvoicesController < ApplicationController
 
   def create
     @invoice = Invoice.new(invoice_params)
-
-    begin
-      @invoice.due_at = Date.parse(invoice_params[:due_at]).strftime('%d/%m/%Y') if invoice_params[:due_at].present?
-    rescue ArgumentError
-      @invoice.due_at = nil
-    end
-
     @invoice.status = 'pending'
 
     if @invoice.save
@@ -53,7 +47,11 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.find(params[:id])
   end
 
+  def set_customers
+    @set_customers ||= Customer.all
+  end
+
   def invoice_params
-    params.require(:invoice).permit(:customer_id, :amount, :due_at)
+    params.require(:invoice).permit(:customer_id, :amount)
   end
 end

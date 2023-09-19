@@ -8,7 +8,6 @@ RSpec.describe Invoice do
   end
 
   describe 'validations' do
-    it { is_expected.to validate_presence_of(:due_at) }
     it { is_expected.to validate_presence_of(:status) }
   end
 end

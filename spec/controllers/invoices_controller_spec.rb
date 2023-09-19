@@ -35,8 +35,7 @@ RSpec.describe InvoicesController do
           post :create, params: {
             invoice: {
               customer_id: customer.id,
-              amount: '1.99',
-              due_at: '01/01/2023'
+              amount: '1.99'
             }
           }
         end.to change(Invoice, :count).by(1)
@@ -47,8 +46,7 @@ RSpec.describe InvoicesController do
         post :create, params: {
           invoice: {
             customer_id: customer.id,
-            amount: '99.99',
-            due_at: '01/01/2023'
+            amount: '99.99'
           }
         }
         expect(response).to redirect_to(Invoice.last)

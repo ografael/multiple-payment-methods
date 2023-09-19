@@ -4,7 +4,7 @@ module Payments
   module Types
     class CreditCard < Payments::Type
       def pay(invoice)
-        invoice.update(status: 'Cartão debitado')
+        invoice.update(status: 'credit_card paid')
       end
     end
   end

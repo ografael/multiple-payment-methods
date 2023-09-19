@@ -23,7 +23,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_16_180938) do
     t.integer "amount_cents", default: 0, null: false
     t.string "amount_currency", default: "USD", null: false
     t.string "status"
-    t.datetime "due_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_invoices_on_customer_id"

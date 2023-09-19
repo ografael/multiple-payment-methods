@@ -5,11 +5,11 @@ class Invoice < ApplicationRecord
 
   monetize :amount_cents
 
-  validates :due_at, :status, presence: true
+  validates :status, presence: true
 
   validates :amount, numericality: { greater_than: 0 }
 
-  default_scope { includes([:customer]).order(due_at: :asc) }
+  default_scope { includes([:customer]) }
 
   scope :not_pending, -> { where.not(status: 'pending') }
 

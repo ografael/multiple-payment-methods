@@ -3,7 +3,7 @@ We need to support multiple payment methods to receive from our customers.
 
 At the moment, the system supports payments using bank slip and credit card. In the future, new forms like deposit may emerge.
 
-Each customer can choose how they want to make the payment. 
+Each customer can choose how they want to make the payment.
 
 This choice must be recorded in the system and taken into account every time a bill is generated for the customer.
 
@@ -44,7 +44,7 @@ module Payments
   module Types
     class Deposit < Payments::Type
       def pay(invoice)
-        invoice.update(status: 'Deposit paid')
+        invoice.update(status: 'deposit paid')
       end
     end
   end

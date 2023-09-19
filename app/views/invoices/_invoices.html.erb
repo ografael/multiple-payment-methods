@@ -7,19 +7,15 @@
       <thead>
         <tr>
           <th scope="col"></th>
-          <th scope="col">Vencimento</th>
-          <th scope="col">Valor</th>
-          <th scope="col">Cliente</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Customer</th>
           <th scope="col">Status</th>
         </tr>
       </thead>
       <tbody>
         <% invoices.each do |invoice| %>
           <tr>
-            <td><%= link_to "detalhar", invoice, class: "btn btn-secondary btn-sm" %></td>
-            <td>
-              <%= invoice.due_at %>
-            </td>
+            <td><%= link_to "detail", invoice, class: "btn btn-secondary btn-sm" %></td>
             <td><%= invoice.amount.format %></td>
             <td><%= link_to invoice.customer.name, invoice.customer %></td>
             <td><%= invoice.status %></td>
