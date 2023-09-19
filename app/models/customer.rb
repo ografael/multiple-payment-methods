@@ -10,16 +10,4 @@ class Customer < ApplicationRecord
   def payment_types
     Payments::Type.all
   end
-
-  def self.recurring_payment_today
-    today = Time.zone.now
-    current_day = today.day
-    last_day_of_month = today.end_of_month.day
-
-    if current_day >= last_day_of_month
-      where('recurring_payment_day >= ?', last_day_of_month)
-    else
-      where('recurring_payment_day == ?', current_day)
-    end
-  end
 end

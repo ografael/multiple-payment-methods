@@ -14,7 +14,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_16_180938) do
   create_table "customers", force: :cascade do |t|
     t.string "name"
     t.string "payment_type"
-    t.integer "recurring_payment_day"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -22,7 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_16_180938) do
   create_table "invoices", force: :cascade do |t|
     t.integer "customer_id"
     t.integer "amount_cents", default: 0, null: false
-    t.string "amount_currency", default: "BRL", null: false
+    t.string "amount_currency", default: "USD", null: false
     t.string "status"
     t.datetime "due_at"
     t.datetime "created_at", null: false

@@ -5,7 +5,6 @@ class CreateCustomers < ActiveRecord::Migration[7.0]
     create_table :customers do |t|
       t.string :name
       t.string :payment_type
-      t.integer :recurring_payment_day
 
       t.timestamps
     end

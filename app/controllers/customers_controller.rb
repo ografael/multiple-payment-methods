@@ -47,6 +47,6 @@ class CustomersController < ApplicationController
   end
 
   def customer_params
-    params.require(:customer).permit(:name, :payment_type, :recurring_payment_day)
+    params.require(:customer).permit(:name, :payment_type)
   end
 end
