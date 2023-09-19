@@ -13,5 +13,5 @@ class Invoice < ApplicationRecord
 
   scope :not_pending, -> { where.not(status: 'pending') }
 
-  scope :pendings, -> { where(status: 'pending') }
+  scope :pending, -> { where(status: 'pending') }
 end
