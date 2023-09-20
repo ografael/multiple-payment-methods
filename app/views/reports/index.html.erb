@@ -1,3 +1,8 @@
+<%= link_to 'Pay Invoices', pay_reports_path, class: 'btn btn-primary' %> | <%= link_to 'Reset Invoices', reset_reports_path, class: 'btn btn-primary' %>
+
+
+<hr />
+
 <h1>Pending (<%= @invoices_pending.count %>)</h1>
 <%= render "invoices/invoices", invoices: @invoices_pending %>
 
