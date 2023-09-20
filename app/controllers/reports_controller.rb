@@ -7,7 +7,7 @@ class ReportsController < ApplicationController
   end
 
   def pay
-    Invoices::RecurringPaymentToday.pay
+    Invoices::Payments.pay
 
     redirect_to reports_path
   end
